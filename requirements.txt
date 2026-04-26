@@ -49,5 +49,3 @@ tenacity
 # Optional: CLI / dev tools
 ipython
 
-in requirement.txt this are available than ,
-what have to add in Start Comman
