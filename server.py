@@ -6,7 +6,10 @@ from pipeline import run_research_pipeline
 
 app = Flask(__name__)
 # CORS(app)   Allow React dev server (localhost:5173) to call this
-CORS(app, origins=["https://multi-genai-project-t7na.vercel.app"])
+CORS(app, origins=[
+    "https://multi-genai-project-t7na.vercel.app",
+    "http://localhost:5173"
+])
 
 @app.route("/run", methods=["POST"])
 def run():
@@ -34,5 +37,8 @@ def run():
 def health():
     return jsonify({"status": "ok"})
 
+import os
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
