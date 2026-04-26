@@ -12,15 +12,6 @@ const STEPS = [
 
 const STATUS = { idle: "idle", running: "running", done: "done", error: "error" };
 
-// ─── helpers ────────────────────────────────────────────────────────────────
-
-/**
- * Parse the search_results string and extract URLs.
- * Handles common formats:
- *   - bare URLs on their own line
- *   - Markdown links  [title](url)
- *   - numbered / bulleted lists that contain a URL
- */
 function extractLinks(raw = "") {
   const links = [];
   const seen = new Set();
@@ -80,12 +71,16 @@ export default function App() {
       setCurrentStep("search");
       setStepStatus((prev) => ({ ...prev, search: STATUS.running }));
 
-      const res = await fetch("http://localhost:5000/run", {
+      // const res = await fetch("http://localhost:5000/run", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ topic: currentTopic }),
+      // });
+      const res = await fetch("https://multi-genai-project-1.onrender.com/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: currentTopic }),
       });
-
       if (!res.ok) {
         const errData = await res.json();
         throw new Error(errData.error || "Pipeline failed");

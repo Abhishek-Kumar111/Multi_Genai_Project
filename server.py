@@ -5,8 +5,8 @@ from flask_cors import CORS
 from pipeline import run_research_pipeline
 
 app = Flask(__name__)
-CORS(app)  # Allow React dev server (localhost:5173) to call this
-
+# CORS(app)   Allow React dev server (localhost:5173) to call this
+CORS(app, origins=["https://multi-genai-project-t7na.vercel.app"])
 
 @app.route("/run", methods=["POST"])
 def run():
