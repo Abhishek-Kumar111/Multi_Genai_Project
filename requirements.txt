@@ -1,5 +1,5 @@
 gunicorn
-gunicorn# Core LLM + LangChain ecosystem
+
 langchain
 langchain-core
 langchain-community
